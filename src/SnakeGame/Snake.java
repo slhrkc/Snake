@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * 
  * @version 1.0
  * @see processing.org
- * @author Salih ERÝKCÝ
+ * @author Salih ERï¿½KCï¿½
  * 
  * 
  */
@@ -170,7 +170,7 @@ public class Snake extends PApplet {
 
 			fill(255);
 			try {
-				Thread.currentThread().sleep(750);
+				Thread.currentThread().sleep(7500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -305,14 +305,15 @@ public class Snake extends PApplet {
 		for (Cell c : cells) {
 			if (head.getCoordinate().equals(c.getCoordinate()) && head != c) {
 				return true;
-			} else if (head.getCoordinate().getX() > 1260
-					|| head.getCoordinate().getX() < 10
-					|| head.getCoordinate().getY() > 600
-					|| head.getCoordinate().getY() < 30) {
-
-				return true;
+			} else if (head.getCoordinate().getX() > 1270) {
+				head.getCoordinate().setCoordinates(10,head.getCoordinate().getY());
+			}else if (head.getCoordinate().getX() < -20){
+				head.getCoordinate().setCoordinates(1240,head.getCoordinate().getY());
+			}else if (head.getCoordinate().getY() > 600){
+				head.getCoordinate().setCoordinates(head.getCoordinate().getX(),30);
+			}else if (head.getCoordinate().getY() < 30){
+				head.getCoordinate().setCoordinates(head.getCoordinate().getX(),600);
 			}
-
 		}
 		return false;
 
@@ -323,6 +324,7 @@ public class Snake extends PApplet {
 		cells.add(lastCell);
 
 	}
+
 
 	public Coordinates placeFood() {
 		Random random = new Random();
